@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function NavBar({ currentUser }) {
-    console.log("super cool navbar")
+export default function Navbar() {
+  console.log("");
 
-return (
+  return (
     <nav>
-      <Link to="/">Home</Link>
-      <Link to="/profile">Profile</Link>
+      <Link to="/">Login</Link>
       <Link to="/posts">Posts</Link>
-      {currentUser?.name ? <h4>Hello, {currentUser.name}</h4> : null}
+      <Link to="/profile">Profile</Link>
+      <Link to="/logout">Logout</Link>
     </nav>
   );
 }
+
