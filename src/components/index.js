@@ -1,5 +1,6 @@
-export { default as login } from "./login";
-export { default as home } from "./home";
-export { default as logout } from "./logout";
-export { default as posts } from "./posts";
-export { default as profile } from "./profile";
+export { default as Login } from "./Login";
+export { default as Home } from "./Home";
+export { default as Logout } from "./Logout";
+export { default as Posts } from "./Posts";
+export { default as Profile } from "./Profile";
+export { default as Navbar } from "./Navbar";
