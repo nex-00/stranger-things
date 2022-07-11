@@ -5,11 +5,12 @@ export default function Navbar() {
   console.log("");
 
   return (
-    <nav>
-      <Link to="/">Login</Link>
-      <Link to="/posts">Posts</Link>
-      <Link to="/profile">Profile</Link>
-      <Link to="/logout">Logout</Link>
+    <nav className="navbar">
+      <Link to="/Login">Login</Link>
+      <Link to="/Posts">Posts</Link>
+      <Link to="/Profile">Profile</Link>
+      <Link to="/Logout">Logout</Link>
+      <Link to="/Register">Register</Link>
     </nav>
   );
 }

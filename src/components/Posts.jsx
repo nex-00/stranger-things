@@ -1,48 +1,50 @@
 import React, { useState, useEffect } from "react";
-import SinglePost from "./SinglePost";
-import { fetchAllPosts } from "api/postfetch";
-
+import { posts, fetchAllPosts } from "../api/postfetch";
+import { MessageButton } from "./Buttons";
+import { Login } from "./Login"
 
 
 // const dummyPosts = [
 //   {
-//     title: "Cool Thing",
-//     description: "this is a really cool thing",
+//     title: "Single glass of milk",
+//     description: "3 years expired",
 //     price: "$3532539545",
-//     seller: "yomamalolsofunnyhaha04",
-//     location: "Mars",
+//     seller: "",
+//     location: "",
 //   },
-// ];
+// ]
+
+
 
 
 export default function Posts() {
-  const [postItem, setPostItem] = useState([]); //// creating post holder
+
+  const [postList, setPostList] = useState([]); //// creating post holder
+
 
   useEffect(() => {
 
     const getAllPosts = async () => {
-      const result = await fetchAllPosts(); // grabbing each post & sending to setpost item in holder, creating an list/array of posts
+      const result = await fetchAllPosts(); // grabbing each post & sending to setpost item in holder, creating a list/array of posts
       console.log(result)
-      setPostItem(result.data.post);
+      console.log(result);
+      setPostList(result.data.posts);
     };
-    getAllPosts();
+     getAllPosts();
   }, []);
 
-  console.log("Rendered post item from line 5:", postItem);
 
-  //return <div>posts</div>;
-
-  // return ( 
-  // <div>
-  //   {postItem.map((post) => {
-  //     return <SinglePost key={`Key: ${index}`} post={post} />
-  //   })}
-  // </div>
-  // );
 return ( 
   <div>
-    {postItem.map((post) => {
-      return <h4 key={post.id}>{post.title}</h4>
+    {postList.map((post) => {
+      return <h4 key={post._id} className="Posts">
+        {post.title} <br />
+        {post.description} <br />
+        {post.price} <br />
+        {post.seller} <br />
+        {post.location} <br />
+        <MessageButton />
+      </h4>
     })}
   </div>
   );
