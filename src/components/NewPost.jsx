@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { loginUser } from "../api/auth";
+import { createPost } from "../api/postfetch";
 
 
-export default function NewPost() {
+export default function NewPost({token}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -10,9 +10,10 @@ export default function NewPost() {
 
   return (
       <div className="newPost">
-          <form method="POST"
+          <form
           onSubmit={async (e) =>  {
             e.preventDefault();
+            await createPost(token, {title, description, price, location})
             setTitle("");
             setDescription("");
             setPrice("");

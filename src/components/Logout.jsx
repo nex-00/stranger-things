@@ -1,13 +1,14 @@
 import React from "react";
 
-export default function Logout({setToken}) {
+export default function Logout({setToken, setCurrentUser}) {
     return (
       <div>
       <form
           onSubmit={async (e) => {
             e.preventDefault();
-      localStorage.clear()
+      localStorage.removeItem("token")
       setToken("")
+      setCurrentUser({})
     }}>
       <button type="submit">Logout</button>
     </form>

@@ -5,13 +5,8 @@ export default function Register({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const localStorageToken = localStorage.getItem("token");
-  // if (localStorageToken = true) {
-  //   "You're already signed in!"
-  // } else {
   return (
     <div className="register">
-      {/* <button onClick={() => isVisible(true)}>Register</button> */}
       <h4>Register:</h4>
       <form
         onSubmit={async (e) => {
@@ -39,4 +34,3 @@ export default function Register({ setToken }) {
     </div>
   );
       }
-// }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { createMsg } from "../api/msgfetch";
 
 
-export default function MessageButton() {
+export default function MessageButton({token}) {
     const [message, setMessage] = useState("")
 
 
@@ -11,7 +12,8 @@ export default function MessageButton() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              setMessage("");
+              await createMsg(token, {message});
+              setMessage("")
             }}
           >
             <input

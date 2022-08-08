@@ -1,16 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
-  console.log("");
+export default function Navbar({token}) {
+  console.log("token", token);
 
   return (
     <nav className="navbar">
-      <Link to="/Login">Login</Link>
+      {
+      token ? null : <Link to="/Login">Login</Link>
+      }
       <Link to="/Posts">Posts</Link>
-      <Link to="/Profile">Profile</Link>
-      <Link to="/Logout">Logout</Link>
-      <Link to="/Register">Register</Link>
+      {
+        token ?  <Link to="/NewPost">New Post</Link> : null
+      }
+      {
+        token ? <Link to="/Logout">Logout</Link> : null
+      }
+      {
+        token ? null : <Link to="/Register">Register</Link> 
+      }
     </nav>
   );
 }

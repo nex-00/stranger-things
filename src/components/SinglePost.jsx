@@ -3,29 +3,27 @@ import { fetchAllPosts } from "../api/postfetch";
 import { MessageButton } from "./Buttons";
 import { Login } from "./Login"
 import { createMsg } from "../api/msgfetch";
+import { Posts } from "./Posts";
 
-export default function Posts() {
+export default function SinglePost() {
 
   const [postList, setPostList] = useState([]); //// creating post holder
-  function deletePost(id) {
-    console.log(id)
-  } 
+  const [singlePost, setSinglePost] = useState([])
 
   useEffect(() => {
 
     const getAllPosts = async () => {
-      const result = await fetchAllPosts(); // grabbing each post & sending to setpost item in holder, creating a list/array of posts
-      setPostList(result.data.posts);
+      const result = await fetchAllPosts();
+      setPostList(result.data.post);
     };
      getAllPosts();
-     
   }, []);
 
-
+console.log(postList)
 return ( 
   <div>
-    {postList.map((post) => {
-      return <h4 key={post._id} className="Posts">
+    {singlePost.map((post) => {
+      return <h4 key={post._id} className="Post">
         {post.title} <br />
         {post.description} <br />
         {post.price} <br />

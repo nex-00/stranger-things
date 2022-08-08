@@ -1,8 +1,9 @@
 import Navbar from "components/Navbar";
 import Register from "components/Register";
 import Login from "components/Login";
-import Profile from "components/Profile"
+import NewPost from "components/NewPost"
 import Posts from "components/Posts"
+import MyPosts from "components/MyPosts"
 import { useEffect, useState } from "react";
 import { fetchMe } from "api/auth";
 import { Route, Router, Routes, useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ useEffect(() => {
     const result = await fetchMe(localStorageToken);
     console.log("result from fetch me", result);
     setCurrentUser(result.data);
+    setToken(localStorageToken)
   }
   if (localStorageToken) {
     getMe();
@@ -35,24 +37,21 @@ const navigate = useNavigate();
 
 if (currentUser.isLoggedIn == false) {
   navigate('/Login', {replace: true});
+  navigate('/')
   }
 
   return ( 
   <>
-      <Navbar />
+      <Navbar token = {token}/>
       {currentUser?.username ? <h3 className="user">{currentUser.username}</h3> : null}
       <Routes>
         <Route exact path="/" element={<Posts />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Login" element={<Login setToken={setToken} />} />
         <Route path="/Posts" element={<Posts />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Logout" element={<Logout setToken={setToken} />} />
+        <Route path="/NewPost" element={<NewPost />} />
+        <Route path="/Register" element={<Register setToken={setToken} />} />
+        <Route path="/Logout" element={<Logout setCurrentUser={setCurrentUser} setToken={setToken} token={token} />} />
       </Routes>
-      
-    
-      {/* <Register setToken={setToken} />
-      <Login setToken={setToken} /> */}
   </>
   );
 }
